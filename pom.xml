@@ -33,7 +33,7 @@
         <pmd.plugin.version>3.14.0</pmd.plugin.version>
         <checkstyle.version>8.45.1</checkstyle.version>
 
-        <spring.boot.version>2.5.2</spring.boot.version>
+        <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
         <spring.cloud.version>2.2.6.RELEASE</spring.cloud.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <model.mapper.version>2.3.7</model.mapper.version>
@@ -92,6 +92,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.1</version>
                 <configuration>
                     <configLocation>/checkstyle/checkstyle.xml</configLocation>
                     <suppressionsLocation>/checkstyle/checkstyle_suppress.xml</suppressionsLocation>
@@ -128,6 +129,24 @@
 <!--                        </goals>-->
 <!--                    </execution>-->
 <!--                </executions>-->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.19.0</version>
+                <configuration>
+                    <linkXref>true</linkXref>
+                    <inputEncoding>utf-8</inputEncoding>
+                    <minimumTokens>100</minimumTokens>
+                    <targetJdk>1.8</targetJdk>
+                    <excludes>
+                        <exclude>**/*Bean.java</exclude>
+                        <exclude>**/generated/*.java</exclude>
+                    </excludes>
+                    <excludeRoots>
+                        <excludeRoot>target/generated-sources/stubs</excludeRoot>
+                    </excludeRoots>
+                </configuration>
             </plugin>
         </plugins>
     </build>
